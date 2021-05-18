@@ -1,0 +1,54 @@
+<app-loading *ngIf="isLoading === 1"></app-loading>
+<app-error *ngIf="isLoading === -1"></app-error>
+<div class="container-fluid" *ngIf="isLoading === 0">
+
+  <div *ngIf="message !== null" class="row alert alert-{{message.type}} m-3">
+    {{message.text}}
+  </div>
+  <div class="row">
+    <!-- Table -->
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header" [ngClass]="{'border-0' : sellers.length> 0}">
+          <h3 class="m-0">Sellers<span><button type="button" class="btn btn-primary float-right m-0 p-2 px-3" hidden>Add</button></span></h3>
+        </div>
+        <div class="table-responsive">
+          <p *ngIf="sellers.length == 0" class="text-center p-3 pt-4">No Seller pending for approval</p>
+          <table *ngIf="sellers.length> 0" class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Business Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let seller of sellers;">
+              <td>
+                {{seller.name}}
+              </td>
+              <td>
+                {{seller.businessName}}
+              </td>
+              <td>
+                {{seller.email}}
+              </td>
+              <td class="py-2">
+                <button type="button" class="btn btn-outline-success py-2 px-3" (click)="approveSeller(seller)"><span class="fas fa-check"></span></button>
+                <button type="button" class="btn btn-outline-danger py-2 px-3" (click)="rejectSeller(seller)"><span class="fas fa-times"></span></button>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--        </div>-->
+  <!--        <div class="col-md-6 col-lg-4">d</div>-->
+  <!--    </div>-->
+
+</div>
+

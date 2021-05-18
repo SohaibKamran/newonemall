@@ -1,0 +1,165 @@
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white px-0 pb-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="">{{id}}</a></li>
+          </ol>
+          <hr>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+<!--        <h6>Brand</h6>-->
+<!--        <div class="form-check">-->
+<!--          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">-->
+<!--          <label class="form-check-label text-muted" for="defaultCheck1">-->
+<!--            lorem ipsum-->
+<!--          </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">-->
+<!--          <label class="form-check-label text-muted" for="defaultCheck2">-->
+<!--            lorem ipsum-->
+<!--          </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--          <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">-->
+<!--          <label class="form-check-label text-muted" for="defaultCheck3">-->
+<!--            lorem ipsum-->
+<!--          </label>-->
+<!--        </div>-->
+
+<!--        <hr>-->
+
+        <h6>Price</h6>
+        <div class="d-flex justify-content-start">
+          <input type="text" class="form-control form-control-sm mr-1 col-5" [(ngModel)]="minPrice" placeholder="Min">
+          <input type="text" class="form-control form-control-sm mr-1 col-5" [(ngModel)]="maxPrice" placeholder="Max">
+          <button type="submit" class="btn btn-primary btn-sm col-2" (click)="applyPrice()">></button>
+        </div>
+
+        <hr>
+
+        <h6>Rating</h6>
+        <div (click)="setStar(5)" style="cursor: pointer;">
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+        </div>
+        <div (click)="setStar(4)" style="cursor: pointer;">
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="small">And Up</span>
+        </div>
+        <div  (click)="setStar(3)" style="cursor: pointer;">
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="small">And Up</span>
+        </div>
+        <div  (click)="setStar(2)" style="cursor: pointer;">
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="small">And Up</span>
+        </div>
+        <div  (click)="setStar(1)" style="cursor: pointer;">
+          <span class="fa fa-star star-checked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="fa fa-star star-unchecked"></span>
+          <span class="small">And Up</span>
+        </div>
+
+        <hr>
+
+        <h6>Home Delivery</h6>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [checked]="fhdCB" (click)="fhd()" value="" id="free">
+          <label class="form-check-label text-muted" for="free">
+            Free
+          </label>
+        </div>
+
+        <hr>
+
+        <h6>Cash on Delivery</h6>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [checked]="codCB" (click)="cod()" value="" id="cod">
+          <label class="form-check-label text-muted" for="cod">
+            Available
+          </label>
+        </div>
+
+        <hr>
+
+        <h6>Warranty</h6>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [checked]="warrantyCB" (click)="warranty()" value="" id="warranty">
+          <label class="form-check-label text-muted" for="warranty">
+            Available
+          </label>
+        </div>
+
+        <hr>
+
+        <h6>7 Days Return</h6>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [checked]="returnsCB" (click)="return()" value="" id="return">
+          <label class="form-check-label text-muted" for="return">
+            Available
+          </label>
+        </div>
+
+      </div>
+
+      <div class="col-10">
+        <div class="row">
+          <div class="col-8">
+            <h5>{{id}}</h5>
+            <p class="text-muted">{{products.length}} items found in {{id}}</p>
+          </div>
+          <div class="col-4">
+            <div class="form-group row align-self-end">
+              <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label">Sort By:</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>Best Match</option>
+                  <option>Prices Low to High</option>
+                  <option>Prices High to Low</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-0">
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-2">
+          <app-product-card *ngFor="let product of products;" [product]="product"></app-product-card>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+

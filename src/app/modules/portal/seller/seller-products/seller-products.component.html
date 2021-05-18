@@ -1,0 +1,84 @@
+<app-loading *ngIf="isLoading === 1"></app-loading>
+<app-error *ngIf="isLoading === -1"></app-error>
+<div class="container-fluid" *ngIf="isLoading === 0">
+
+  <!--    <div class="d-sm-flex align-items-center justify-content-between mb-4">-->
+  <!--        <h1 class mb-0 text-gray-800">Products</h1>-->
+  <!--    </div>-->
+
+
+  <!--    <div class="row mb-4">-->
+  <!--        <div class="col-md-6 col-lg-8">-->
+  <div *ngIf="message !== null" class="row alert alert-{{message.type}} m-3">
+    {{message.text}}
+  </div>
+  <h1 class="pl-2">Product </h1>
+  <div class="card shadow">
+    <div class="d-grid gap-2 d-md-block ml-4 mt-3 mb-3">
+      <button type="button" class="btn" (click)="addProduct()">Add New</button>
+      <button type="button" class="btn">Import</button>
+      <button type="button" class="btn" (click)="download()">Export</button>
+      <button type="button" class="btn">View Import History</button>
+      <button type="button" class="btn ">View Export History</button>
+    </div>
+  </div>
+
+   <!-- Table -->
+  <div class="row mt-3">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header d-flex" [ngClass]="{'border-0' : products.length> 0}">
+            <input class="mr-2" type="text" id="name" placeholder="Search Product">
+            <input class="mr-2" type="text" id="seller" placeholder="Search Seller">
+            <input class="specialInput mr-2" type="text" id="shop" placeholder="Search Shop">
+            <input type="text" id="brandName" placeholder="Search Brand Name">
+        </div>
+        <div class="table-responsive">
+          <p *ngIf="products.length == 0" class="text-center p-3 pt-4">No product found</p>
+          <table *ngIf="products.length> 0" class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th class="tableHeader" scope="col"><h4>Product</h4></th>
+
+              <th class="tableHeader" scope="col"><h4>Brand</h4></th>
+              <th class="tableHeader" scope="col"><h4>Category</h4></th>
+              <th class="tableHeader" scope="col"><h4>Price</h4></th>
+              <th class="tableHeader" scope="col"><h4>Status</h4></th>
+              <th class="tableHeader" scope="col"><h4>Action</h4></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of products;">
+              <td>
+                {{product.name}}
+              </td>
+              <td>
+                {{product.brand}}
+              </td>
+              <td>
+                {{product.category}}
+              </td>
+              <td>
+                RS. {{product.price}}
+              </td>
+              <td>
+                {{product.status | titlecase}}
+              </td>
+              <td class="py-2">
+                <button type="button" class="btn btn-outline-danger py-2 px-3" ><span class="fa fa-trash-alt"></span></button>
+                <button type="button" class="btn btn-outline-warning py-2 px-3" (click)="editProduct(product)"><span class="fa fa-edit"></span></button>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--        </div>-->
+  <!--        <div class="col-md-6 col-lg-4">d</div>-->
+  <!--    </div>-->
+
+</div>
+

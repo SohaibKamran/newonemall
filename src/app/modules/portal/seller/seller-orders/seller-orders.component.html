@@ -1,0 +1,92 @@
+<app-loading *ngIf="isLoading === 1"></app-loading>
+<app-error *ngIf="isLoading === -1"></app-error>
+<div class="container-fluid" *ngIf="isLoading === 0">
+
+   <!--    <div class="d-sm-flex align-items-center justify-content-between mb-4">-->
+  <!--        <h1 class mb-0 text-gray-800">orders</h1>-->
+  <!--    </div>-->
+
+
+  <!--    <div class="row mb-4">-->
+  <!--        <div class="col-md-6 col-lg-8">-->
+
+  <h1 class="pl-2">Orders</h1>
+   <div class="d-grid gap-2 d-md-block ml-4 mt-3 mb-3">
+     <button type="button" class="btn btn-sm " (click)="getAll()" >All</button>
+     <button type="button" class="btn btn-sm" (click)="getPendingOrders()">Pending</button>
+     <button type="button" class="btn btn-sm"  (click)="getReadyToShipOrders()">Ready To Ship</button>
+     <button type="button" class="btn btn-sm" (click)="getShippedOrders()">Shipped</button>
+     <button type="button" class="btn btn-sm" (click)="getDeliveredOrders()">Delivered</button>
+     <button type="button" class="btn btn-sm"  (click)="getCancelledOrders()">Cancelled</button>
+     <button type="button" class="btn btn-sm" (click)="getReturnedOrders()">Returned</button>
+     <button type="button" class="btn btn-sm" (click)="getFailedDelivery()">Failed Delivery</button>
+   </div>
+
+  <div class="card shadow">
+    <div class="card-header d-flex" [ngClass]="{'border-0' : orders.length> 0}">
+      <input class="input-width mr-2" type="text" id="name" placeholder="Order Number">
+      <input class="input-width mr-2" type="text" id="seller" placeholder="Customer">
+      <input class="input-width mr-2" type="text" id="shop" placeholder="Product">
+      <input class="input-width mr-2" type="text" id="Product Tag" placeholder="Product Tag">
+      <input class="input-width mr-2" type="text" id="brandName" placeholder="Seller SKU">
+      <input class="input-width mr-2" type="text" id="brandName" placeholder="Payment">
+      <button type="button" class="btn btn-sm btn-secondary ml-4">Seach</button>
+    </div>
+  </div>
+
+   <!-- Table -->
+  <div class="row mt-2">
+    <div class="col">
+      <div class="card shadow">
+        <div class="table-responsive">
+          <p *ngIf="orders.length === 0" class="text-center p-3 pt-4">No order found</p>
+          <table *ngIf="orders.length> 0" class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th class="tableHeader" scope="col"><h4>Customer Name</h4></th>
+              <th class="tableHeader" scope="col"><h4>Status</h4></th>
+              <th class="tableHeader" scope="col"><h4>Customer Address</h4></th>
+              <th class="tableHeader" scope="col"><h4>No of products</h4></th>
+              <th class="tableHeader" scope="col"><h4>Payment Method</h4></th>
+              <th class="tableHeader" scope="col"><h4>Delivery Charges</h4></th>
+              <th class="tableHeader" scope="col"><h4>Delivery method</h4></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let order of orders;">
+              <td (click)="details(order)">
+                {{order.customer.firstName+' '+order.customer.lastName}}
+              </td>
+              <td>
+                {{order.orderStatus}}
+              </td>
+              <td>
+                {{order.customer.province+'/'+order.customer.city+'/'+order.customer.address}}
+              </td>
+              <td>
+                
+                {{order.products.length}}
+              </td>
+              <td>
+                {{order.paymentMethod}}
+              </td>
+              <td>
+                {{order.delivery[0].charger}}
+              </td>
+              <td>
+                {{order.delivery[0].method}}
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--        </div>-->
+  <!--        <div class="col-md-6 col-lg-4">d</div>-->
+  <!--    </div>-->
+
+
+</div>

@@ -1,0 +1,50 @@
+<app-loading *ngIf="isLoading === 1"></app-loading>
+<app-error *ngIf="isLoading === -1"></app-error>
+<div class="container-fluid" *ngIf="isLoading === 0">
+
+  <div *ngIf="message !== null" class="row alert alert-{{message.type}} m-3">
+    {{message.text}}
+  </div>
+  <div class="row">
+    <!-- Table -->
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header" [ngClass]="{'border-0' : categories.length> 0}">
+<!--          <h3 class="m-0">Categories<span><button type="button" class="btn btn-primary float-right m-0 p-2 px-3" (click)="addCategory()">Add</button></span></h3>-->
+        </div>
+        <div class="table-responsive">
+          <p *ngIf="categories.length == 0" class="text-center p-3 pt-4">No Category found</p>
+          <table *ngIf="categories.length> 0" class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Category</th>
+              <th scope="col">SubCategories</th>
+<!--              <th scope="col">Action</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let category of categories;">
+              <td>
+                {{category.name}}
+              </td>
+              <td>
+                <ng-template ngFor let-subCategory [ngForOf]="category.subCategories">
+                  <li>{{subCategory.name}}</li>
+                
+                </ng-template>
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--        </div>-->
+  <!--        <div class="col-md-6 col-lg-4">d</div>-->
+  <!--    </div>-->
+
+</div>
+
+
+

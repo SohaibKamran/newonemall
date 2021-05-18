@@ -1,0 +1,516 @@
+<app-loading *ngIf="isLoading===true"></app-loading>
+<section *ngIf="isLoading===false">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white px-0 pb-0">
+            <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/category/'+product.category]">{{product.category}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+          </ol>
+          <hr>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card p-2">
+          <div class="row">
+            <div class="col-3">
+              <img src="{{server + product.thumbnail}}" alt="{{product.name}}" class="img-fluid" width="512px" height="512px" >
+            </div>
+            <div class="col-6">
+              <h5>
+                {{product.name}}
+              </h5>
+              <div class="d-flex justify-content-between align-items-baseline">
+                <div>
+                  <span [ngClass]="(product.ratings < 1)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                  <span [ngClass]="(product.ratings < 2)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                  <span [ngClass]="(product.ratings < 3)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                  <span [ngClass]="(product.ratings < 4)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                  <span [ngClass]="(product.ratings < 5)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                  <span>&nbsp;</span>
+                  <span class="small">{{product.reviews | number}} Ratings</span>
+                </div>
+                <div>
+                  <p class="small m-0">Brand: {{product.brand}}</p>
+                </div>
+                <div>
+                  <a href="#" class="mr-3">
+                    <i class="fas fa-share-alt"></i>
+                  </a>
+                  <a href="#">
+                    <i class="far fa-heart"></i>
+                  </a>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="d-flex justify-content-between align-items-baseline">
+                <div class="d-flex justify-content-start align-items-baseline">
+                  <h5 class="text-warning">Rs. {{(product.salesPrice - ((product.discount / 100) * product.salesPrice)) |  number:'1.0-0'}}</h5>
+                  <p class="small m-0 ml-3" *ngIf="product.discount && product.discount > 0">
+                    <span class="text-secondary"><del>Rs. {{product.salesPrice |  number:'1.0-0'}}</del></span>
+                    <span class="ml-1">-{{product.discount}}%</span>
+                  </p>
+                </div>
+                <div class="d-flex justify-content-start align-items-baseline">
+                  <label >Quantity: </label>
+                  <!--                                    <input id="quantity" type="number" min="1" class="form-control form-control-sm ml-2">-->
+                  <div class="input-group ml-2 my-0">
+                    <!--                    <input type="button" value="-" class="button-minus" data-field="quantity">-->
+                    <!-- <input type="number" step="1" ng-pattern="/^(0|[1-9][0-9]*)$/" min="1" max="" value="1" name="quantity" [(ngModel)]="quantity" #ctrl="ngModel" required class="quantity-field"> -->
+                    <!--                    <input type="button" value="+" class="button-plus" data-field="quantity">-->
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <!--              <div class="d-flex justify-content-between align-items-baseline">-->
+              <!--                <div class="d-flex justify-content-start">-->
+              <!--                  <p class="small text-muted m-0">-->
+              <!--                    Color Family-->
+              <!--                  </p>-->
+              <!--&lt;!&ndash;                  <p class="small font-weight-bold m-0 ml-3">Yellow</p>&ndash;&gt;-->
+              <!--                </div>-->
+              <!--                <div class="btn-group btn-group-toggle ml-5" data-toggle="buttons">-->
+              <!--                  <label class="btn btn-sm btn-outline-info active">-->
+              <!--                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Yellow-->
+              <!--                  </label>-->
+              <!--                  <label class="btn btn-sm btn-outline-info">-->
+              <!--                    <input type="radio" name="options" id="option2" autocomplete="off"> Blue-->
+              <!--                  </label>-->
+              <!--                  <label class="btn btn-sm btn-outline-info">-->
+              <!--                    <input type="radio" name="options" id="option3" autocomplete="off"> Grey-->
+              <!--                  </label>-->
+              <!--                </div>-->
+              <!--              </div>-->
+
+              <!--              <div class="mt-2 d-flex justify-content-between align-items-baseline">-->
+              <!--                <div class="d-flex justify-content-start">-->
+              <!--                  <p class="small text-muted m-0">-->
+              <!--                    Size-->
+              <!--                  </p>-->
+              <!--&lt;!&ndash;                  <p class="small font-weight-bold m-0 ml-3">Small</p>&ndash;&gt;-->
+              <!--                </div>-->
+              <!--                <div class="btn-group btn-group-toggle ml-5" data-toggle="buttons">-->
+              <!--                  <label class="btn btn-sm btn-outline-info active">-->
+              <!--                    <input type="radio" name="options" id="option1" autocomplete="off" checked> S-->
+              <!--                  </label>-->
+              <!--                  <label class="btn btn-sm btn-outline-info">-->
+              <!--                    <input type="radio" name="options" id="option2" autocomplete="off"> M-->
+              <!--                  </label>-->
+              <!--                  <label class="btn btn-sm btn-outline-info">-->
+              <!--                    <input type="radio" name="options" id="option3" autocomplete="off"> L-->
+              <!--                  </label>-->
+              <!--                  <label class="btn btn-sm btn-outline-info">-->
+              <!--                    <input type="radio" name="options" id="option4" autocomplete="off"> XL-->
+              <!--                  </label>-->
+              <!--                </div>-->
+              <!--              </div>-->
+
+              <div class="row mt-3">
+                <div class="col-6 pr-1">
+                  <button type="button" class="btn btn-outline-primary btn-block">Buy Now</button>
+                </div>
+                <div class="col-6 pl-1">
+                  <button type="button" class="btn btn-primary btn-block" (click)="addToCart()">Add to Cart</button>
+                </div>
+              </div>
+              <div class="row">
+                <div *ngIf="message !== null" class="col-12 alert my-4 alert-{{message.type}} mb-3">
+                  {{message.text}}
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="col-3">
+              <div class="bg-light p-3">
+                <p class="text-muted font-weight-bold small">Delivery Options</p>
+
+                <div class="d-flex justify-content-between">
+                  <p class="text-dark m-0">
+                    <i class="fas fa-map-marker-alt text-muted mr-1"></i>
+                    Ships from
+                  </p>
+                  <p class="m-0 font-weight-bold">{{product.shipFrom}}</p>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+                  <p class="text-dark">
+                    <i class="fas fa-truck text-muted mr-1"></i>
+                    Home Delivery
+                  </p>
+                  <p class="m-0 font-weight-bold">{{(product.fhd)?'Free':'Paid'}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="text-dark m-0">
+                    <i class="far fa-money-bill-alt text-muted mr-1"></i>
+                    Cash on Delivery
+                  </p>
+                  <p class="m-0 font-weight-bold">{{(product.cod)?'Available':'Unavailable'}}</p>
+                </div>
+
+                <hr>
+
+                <p class="text-muted font-weight-bold small">Return & Warranty</p>
+
+                <div class="d-flex justify-content-between">
+                  <p class="text-dark">
+                    <i class="fas fa-shield-alt text-muted mr-1"></i>
+                    Warranty
+                  </p>
+                  <p class="m-0 font-weight-bold">{{(product.warranty)? 'Available': 'Unavailable'}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="text-dark">
+                    <i class="fas fa-undo-alt text-muted mr-1"></i>
+                    7 Days Returns
+                  </p>
+                  <p class="m-0 font-weight-bold">{{(product.return)? 'Available': 'Unavailable'}}</p>
+                </div>
+
+              </div>
+
+              <div class="bg-light mt-2 p-3">
+                <p class="small m-0 text-muted">Sold by</p>
+                <p class="m-0">{{product.seller.name}}</p>
+
+                <hr class="my-1">
+
+                <div class="row">
+                  <div class="col-4">
+                    <p class="small text-muted">
+                      Positive Seller Ratings
+                    </p>
+                    <h5>
+                      N/A
+                    </h5>
+                  </div>
+                  <div class="col-4 justify-content-center">
+                    <p class="small text-muted">
+                      Ships on Time
+                    </p>
+                    <h5 class="mt-auto" style="position: absolute; bottom: 0">
+                      N/A
+                    </h5>
+                  </div>
+                  <div class="col-4">
+                    <p class="small text-muted">
+                      Chat Response Rate
+                    </p>
+                    <h5>
+                      N/A
+                    </h5>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                  <a [routerLink]="['/store/'+product.seller._id]" class="text-info text-uppercase small font-weight-bold">Go to Outlet</a>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <h6 class="card-header">
+              Product Details
+            </h6>
+            <div class="card-body">
+              <p>
+                {{product.description}}
+              </p>
+
+              <hr>
+              <p class="small text-muted font-weight-bold m-0">
+                What's in the box
+              </p>
+              <p>{{product.inTheBox}}</p>
+            </div>
+          </div>
+          <div class="mt-3">
+            <div class="card">
+              <h6 class="card-header">
+                Ratings & Reviews
+              </h6>
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-4">
+                    <div>
+                      <span class="h1">{{product.ratings}}</span>
+                      <span class="text-muted h3">/5</span>
+                    </div>
+                    <div class="my-2">
+                      <span [ngClass]="(product.ratings < 1)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                      <span [ngClass]="(product.ratings < 2)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                      <span [ngClass]="(product.ratings < 3)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                      <span [ngClass]="(product.ratings < 4)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                      <span [ngClass]="(product.ratings < 5)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>
+                    </div>
+                    <!--                <p class="text-muted m-0">{{product.reviews}} ratings</p>-->
+                  </div>
+                  <div class="col-8">
+
+                    <div class="d-flex justify-content-start align-items-baseline">
+                      <div class="mr-2">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                      </div>
+                      <p class="small m-0">0</p>
+                    </div>
+
+                    <div class="d-flex justify-content-start align-items-baseline">
+                      <div class="mr-2">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                      </div>
+                      <p class="small m-0">0</p>
+                    </div>
+
+                    <div class="d-flex justify-content-start align-items-baseline">
+                      <div class="mr-2">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                      </div>
+                      <p class="small m-0">0</p>
+                    </div>
+
+                    <div class="d-flex justify-content-start align-items-baseline">
+                      <div class="mr-2">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                      </div>
+                      <p class="small m-0">0</p>
+                    </div>
+
+                    <div class="d-flex justify-content-start align-items-baseline">
+                      <div class="mr-2">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                        <span class="fa fa-star star-unchecked"></span>
+                      </div>
+                      <p class="small m-0">0</p>
+                    </div>
+
+                  </div>
+                </div>
+                <hr>
+
+                <p class="m-0">Product Reviews</p>
+                <hr>
+
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <div>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                  </div>
+                  <p class="text-muted small m-0">1 week ago</p>
+                </div>
+                <p class="small m-0 text-muted">by OneMall Customer</p>
+                <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad deleniti dicta dolorem ducimus ea ex, facere id impedit inventore ipsam labore laborum, molestiae nesciunt pariatur perspiciatis quam quis repudiandae vel!</p>
+
+                <img src="https://via.placeholder.com/100x100" alt="Image" class="img-fluid">
+                <img src="https://via.placeholder.com/100x100" alt="Image" class="img-fluid">
+                <img src="https://via.placeholder.com/100x100" alt="Image" class="img-fluid">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--        <div class="col-3">-->
+        <!--          <div class="card">-->
+        <!--            <h6 class="card-header">-->
+        <!--              Similar Productsa-->
+        <!--            </h6>-->
+        <!--            <div class="card-body">-->
+        <!--              <div class="card h-100">-->
+        <!--                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="https://via.placeholder.com/100x100">-->
+        <!--                <div class="card-overlay-icons">-->
+        <!--                  <div class="d-flex justify-content-between p-2">-->
+        <!--                    <span class="badge badge-danger align-self-center p-1">-25%</span>-->
+        <!--                    <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+        <!--                      <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>-->
+        <!--                    </svg>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--                <div class="card-body">-->
+        <!--                  <div class="d-flex justify-content-start">-->
+        <!--                    <div class="mr-1">-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                    </div>-->
+        <!--                    <p class="m-0 text-muted">(61)</p>-->
+        <!--                    <span class="badge badge-primary ml-auto align-self-center p-2">1 Sold</span>-->
+        <!--                  </div>-->
+        <!--                  <div class="d-flex justify-content-between align-items-baseline">-->
+        <!--                    <h4 class="text-primary">Rs. 1,545</h4>-->
+        <!--                    <h6 class="text-muted"><del>Rs. 1,899</del></h6>-->
+        <!--                  </div>-->
+        <!--                  <p>5M RGB Waterproof 3528 Remote Control Led Strip Light - Complete Kit With 12V Adapter</p>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+      </div>
+    </div>
+    <div class="container mt-3">
+      <div class="row">
+        <!--        <div class="col-9">-->
+        <!--          <div class="card">-->
+        <!--            <h6 class="card-header">-->
+        <!--              Ratings & Reviews-->
+        <!--            </h6>-->
+        <!--            <div class="card-body">-->
+
+        <!--              <div class="row">-->
+        <!--                <div class="col-4">-->
+        <!--                  <div>-->
+        <!--                    <span class="h1">{{product.ratings}}</span>-->
+        <!--                    <span class="text-muted h3">/5</span>-->
+        <!--                  </div>-->
+        <!--                  <div class="my-2">-->
+        <!--                    <span [ngClass]="(product.ratings < 1)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>-->
+        <!--                    <span [ngClass]="(product.ratings < 2)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>-->
+        <!--                    <span [ngClass]="(product.ratings < 3)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>-->
+        <!--                    <span [ngClass]="(product.ratings < 4)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>-->
+        <!--                    <span [ngClass]="(product.ratings < 5)?'star-unchecked':'star-checked'" class="fa fa-star star-checked"></span>-->
+        <!--                  </div>-->
+        <!--  &lt;!&ndash;                <p class="text-muted m-0">{{product.reviews}} ratings</p>&ndash;&gt;-->
+        <!--                </div>-->
+        <!--                <div class="col-8">-->
+
+        <!--                  <div class="d-flex justify-content-start align-items-baseline">-->
+        <!--                    <div class="mr-2">-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                    </div>-->
+        <!--                    <p class="small m-0">0</p>-->
+        <!--                  </div>-->
+
+        <!--                  <div class="d-flex justify-content-start align-items-baseline">-->
+        <!--                    <div class="mr-2">-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                    </div>-->
+        <!--                    <p class="small m-0">0</p>-->
+        <!--                  </div>-->
+
+        <!--                  <div class="d-flex justify-content-start align-items-baseline">-->
+        <!--                    <div class="mr-2">-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                    </div>-->
+        <!--                    <p class="small m-0">0</p>-->
+        <!--                  </div>-->
+
+        <!--                  <div class="d-flex justify-content-start align-items-baseline">-->
+        <!--                    <div class="mr-2">-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                    </div>-->
+        <!--                    <p class="small m-0">0</p>-->
+        <!--                  </div>-->
+
+        <!--                  <div class="d-flex justify-content-start align-items-baseline">-->
+        <!--                    <div class="mr-2">-->
+        <!--                      <span class="fa fa-star star-checked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                      <span class="fa fa-star star-unchecked"></span>-->
+        <!--                    </div>-->
+        <!--                    <p class="small m-0">0</p>-->
+        <!--                  </div>-->
+
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--              <hr>-->
+
+        <!--              <p class="m-0">Product Reviews</p>-->
+        <!--              <hr>-->
+
+        <!--              <div class="d-flex justify-content-between align-items-baseline">-->
+        <!--                <div>-->
+        <!--                  <span class="fa fa-star star-checked"></span>-->
+        <!--                  <span class="fa fa-star star-checked"></span>-->
+        <!--                  <span class="fa fa-star star-checked"></span>-->
+        <!--                  <span class="fa fa-star star-checked"></span>-->
+        <!--                  <span class="fa fa-star star-checked"></span>-->
+        <!--                </div>-->
+        <!--                <p class="text-muted small m-0">1 week ago</p>-->
+        <!--              </div>-->
+        <!--              <p class="small m-0 text-muted">by Daraz Customer</p>-->
+        <!--              <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad deleniti dicta dolorem ducimus ea ex, facere id impedit inventore ipsam labore laborum, molestiae nesciunt pariatur perspiciatis quam quis repudiandae vel!</p>-->
+
+        <!--              <img src="https://via.placeholder.com/100x100" alt="Image" class="img-fluid">-->
+        <!--              <img src="https://via.placeholder.com/100x100" alt="Image" class="img-fluid">-->
+        <!--              <img src="https://via.placeholder.com/100x100" alt="Image" class="img-fluid">-->
+
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div class="col-3">-->
+
+        <!--        </div>-->
+      </div>
+    </div>
+  </div>
+</section>

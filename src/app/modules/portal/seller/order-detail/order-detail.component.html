@@ -1,0 +1,37 @@
+<div class="container">
+    <article class="card">
+        <header class="card-header">Order Detail</header>
+        <div class="card-body">
+            <h6>Order ID: {{order._id}}</h6>
+            <article class="card">
+                <div class="card-body row">
+                    <div class="col"> <strong>Customer Name</strong> <br>{{order.customer.firstName}} {{order.customer.lastName}}</div>
+                    <div class="col"> <strong>Shipping Address:</strong> <br>{{order.customer.address}}, {{order.customer.city}}</div>
+                    <div class="col"><strong>Status: </strong>{{order.orderStatus}}
+                        <select (change)="changeStatus($event.target.value)">
+                            <option value="null">Change Status</option>
+                            <option *ngFor="let status of statuses" value={{status}}>
+                            {{status}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col"> <strong>Delivery Method:</strong> <br>{{order.delivery[0].method }}</div>
+                </div>
+            </article>
+           
+            <hr>
+            <ul class="row">
+                <li class="col-md-4" *ngFor="let product of order.products">
+                    <figure class="itemside mb-3">
+                        <div class="aside">
+                            <img src= "{{server + product.productId.thumbnail}}" class="img-sm border"></div>
+                        <figcaption class="info align-self-center">
+                            <p class="title">{{product.productId.brand}} <br>{{product.productId.name}}</p> <span class="text-muted">${{product.productId.salesPrice}}  </span>
+                        </figcaption>
+                    </figure>
+                </li>
+            </ul>
+            <hr> <a  class="btn btn-warning" data-abc="true" [routerLink]="'/manage/seller/orders'" routerLinkActive="router-link-active"  > <i class="fa fa-chevron-left"></i> Back to orders</a>
+        </div>
+    </article>
+</div>

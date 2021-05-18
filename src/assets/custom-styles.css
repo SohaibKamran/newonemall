@@ -1,0 +1,59 @@
+body {
+  font-family: Roboto-Regular, "Helvetica Neue", Helvetica, Tahoma, Arial, Sans-serif;
+}
+.timer-count {
+  border-radius: 17px;
+  font-weight: 500;
+  margin: 12px 6px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #d3232a;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+}
+.star-checked {
+  color: gold;
+}
+.star-unchecked {
+  color: lightgray;
+}
+/* The overlay effect (full height and width) - lays on top of the container and over the image */
+.card-overlay-icons {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  background-color: transparent;
+}
+.avatar {
+  border: 0.3rem solid rgba(255, 255, 255, 0.3);
+  margin-top: -6rem;
+  margin-bottom: 1rem;
+  max-width: 9rem;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: .8em;
+}
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

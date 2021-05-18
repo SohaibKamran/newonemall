@@ -1,0 +1,68 @@
+<header class="fixed-top">
+  <div class="bg-light py-1">
+    <div class="container d-flex justify-content-end">
+      <ul class="list-inline mb-0" style="font-size: 12px;">
+        <li class="list-inline-item text-uppercase mr-4">
+          <a class="text-dark" [routerLink]="'/'">Save more on app</a>
+        </li>
+        <li class="list-inline-item text-uppercase mr-4">
+          <a class="text-dark" [routerLink]="'/manage'">Sell on OneMall</a>
+        </li>
+        <li class="list-inline-item text-uppercase mr-4">
+          <a class="text-dark" [routerLink]="'/'">Customer Care</a>
+        </li>
+        <li class="list-inline-item text-uppercase mr-4">
+          <a class="text-dark" (click)="trackOrder()">Track my Order</a>
+        </li>
+        <li *ngIf="!account" class="list-inline-item text-uppercase mr-4">
+          <a class="text-dark" [routerLink]="'/login'">Login</a>
+        </li>
+        <li *ngIf="!account" class="list-inline-item text-uppercase">
+          <a class="text-dark" [routerLink]="'/signup'">Signup</a>
+        </li>
+        <li *ngIf="account" class="list-inline-item text-uppercase">
+          <a class="text-dark" [routerLink]="'/signup'">{{account}}</a>
+        </li>
+        <li *ngIf="account" class="list-inline-item text-uppercase">
+          <a class="text-dark" [routerLink]="'/'" (click)="logout()">logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top sticky position-sticky">
+   
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="ml-5 pl-4 navbar-brand" href="#">
+        <img src="/assets/images/logo.png" width="140" height="auto" alt="" loading="lazy">
+      </a>
+
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="form-inline mx-auto">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search in OneMall" aria-label="Search in OneMall"
+              aria-describedby="button-addon2" style="width: 600px;">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+        <a href="#" class=" mr-auto" [routerLink]="'/cart'">
+          <!-- <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-cart" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+          </svg> -->
+          <ion-icon name="bag-handle-outline" size="large"></ion-icon>
+
+          <span class="badge rounded-pill bg-primary" style="vertical-align: top; color: white;">{{cartItem}}</span> 
+          
+        </a>
+      </div>
+  </nav>
+</header>

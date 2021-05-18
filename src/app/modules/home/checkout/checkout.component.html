@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      
+        <form [formGroup]="inputForm" #formDirective="ngForm" >
+          <div class="row">
+            <div class="col-md-6"><label class="label"> First Name </label>
+              <input type="text" class="form-control" (keypress)="personIcon()" formControlName="FirstName">
+              <label class="label"> Phone No </label>
+              <input type="number" class="form-control input-div" (keypress)="phoneIcon()" formControlName="PhoneNo">
+              <label class="label"> City </label>
+              <select class="form-control" id="exampleFormControlSelect1" formControlName="City">
+                <option>Rawalpindi</option>
+                <option>Lahore</option>
+                <option>Multan</option>
+              </select></div>
+            <div class="col-md-6"><label class="label"> Last Name </label>
+              <input type="text" class="form-control input-div" formControlName="LastName">
+              <label class="label"> Address </label>
+              <input type="text" class="form-control input-div" (keypress)="mapIcon()" formControlName="Address">
+              <label class="label"> Province </label>
+              <select class="form-control" id="exampleFormControlSelect1" formControlName="Province">
+                <option>Punjab</option>
+                <option>Sindh</option>
+              </select></div>
+          </div>
+          <table class="table table-borderless table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of getcartDetail">
+              <tr>
+                <td>{{item.product.name}}</td>
+                <td>{{item.product.brand}}</td>
+                <td>{{item.product.salesPrice}}</td>
+                <td>{{item.productQuantity}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="padding: 20px; margin-top: 30%; background-color: rgb(253, 253, 253);">
+        <!-- <button type="button" class="btn btn-primary btn-lg label">Place Order</button> -->
+
+        <div class="label"> <i class="fas fa-user" *ngIf=PersonIcon></i> {{ FirstName.value }} {{ LastName.value }}
+        </div>
+        <div class="label"><strong><i class="fas fa-map-marker-alt" *ngIf=MapIcon></i></strong> {{ Address.value }}
+          {{ City.value }} {{ Province.value }}</div>
+        <div class="label"><strong><i class="fas fa-phone" *ngIf=PhoneIcon></i></strong> {{ PhoneNo.value }}</div>
+
+        <!-- <div class="label"><strong><i class="fas fa-money-bill-alt"></i> </strong> {{ Payment.value }}</div> -->
+        <h4 class="label">Rs. {{total | number}} </h4>
+        <button class="btn btn-primary" type="button" [disabled]="!inputForm.valid" (click)="isLogin()">Place Order</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<app-loading *ngIf="isLoading === 1"></app-loading>
+<app-error *ngIf="isLoading === -1"></app-error>
+<div class="container-fluid" *ngIf="isLoading === 0">
+
+  <!--    <div class="d-sm-flex align-items-center justify-content-between mb-4">-->
+  <!--        <h1 class="h2 mb-0 text-gray-800">Products</h1>-->
+  <!--    </div>-->
+
+
+  <!--    <div class="row mb-4">-->
+  <!--        <div class="col-md-6 col-lg-8">-->
+  <div *ngIf="message !== null" class="row alert alert-{{message.type}} m-3">
+    {{message.text}}
+  </div>
+  <div class="row">
+    <!-- Table -->
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header" [ngClass]="{'border-0' : products.length> 0}">
+          <h3 class="m-0">Products<span><button type="button" class="btn btn-primary float-right m-0 p-2 px-3" hidden>Add</button></span></h3>
+        </div>
+        <div class="table-responsive">
+          <p *ngIf="products.length == 0" class="text-center p-3 pt-4">No product pending for approval</p>
+          <table *ngIf="products.length> 0" class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Category</th>
+              <th scope="col">Sales Price</th>
+              <th scope="col">Purchase Price</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of products;">
+              <td>
+                {{product.name}}
+              </td>
+              <td>
+                {{product.brand}}
+              </td>
+              <td>
+                {{product.category}}
+              </td>
+              <td>
+                RS. {{product.salesPrice}}
+              </td>
+              <td>
+                RS. {{product.purchasePrice}}
+              </td>
+              <td class="py-2">
+                <button type="button" class="btn btn-outline-success py-2 px-3" (click)="approveProduct(product)"><span class="fas fa-check"></span></button>
+                <button type="button" class="btn btn-outline-danger py-2 px-3" (click)="rejectProduct(product)"><span class="fas fa-times"></span></button>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--        </div>-->
+  <!--        <div class="col-md-6 col-lg-4">d</div>-->
+  <!--    </div>-->
+
+</div>
+

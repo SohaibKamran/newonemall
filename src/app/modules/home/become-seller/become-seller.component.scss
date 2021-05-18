@@ -1,0 +1,30 @@
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+
+.bg-image {
+  /* The image used */
+  background-image: url('src/assets/img/technology-background.jpg');
+  opacity: 0.5;
+  position: absolute;
+
+  ///* Add the blur effect */
+  //filter: blur(8px);
+  //-webkit-filter: blur(8px);
+  //
+  ///* Full height */
+  //height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.container{
+  opacity: 100%;
+}

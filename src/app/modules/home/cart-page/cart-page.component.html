@@ -1,0 +1,93 @@
+<div class="container" xmlns="http://www.w3.org/1999/html" *ngIf="cart">
+  <div class="row mt-5">
+    <div class="col-md-8 border rounded" style="padding: 30px">
+      <div class="row" style="background-color: #fff; margin-bottom: 20px">
+        <div class="col-md-12" style="padding: 0 12px">
+          <p class="delivery-slider-title">Preferred Delivery Option</p>
+        </div>
+        <div class="col-md-4 delivery-item-inner">
+          <div class="delivery-item-content">
+            <p class="delivery-item-name-wrap">
+              <span class="delivery-item-name" style="margin-top: 10px">
+                Home delivery
+              </span>
+            </p>
+            <p class="delivery-item-time">Availabile</p>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let item of cart">
+        <div class="card">
+        <div class="row ">
+          <div class="col-md-3">
+            <!-- <img src="{{ item.product.thumbnail }}" alt="image"> -->
+            <img src= "{{server + item.product.thumbnail}}" alt="image" width="130px" height="100px">
+          </div>
+          <div class="col-md-3">
+            <div><strong> Name : </strong>{{ item.product.name }}</div>
+            <div><strong>Brand : </strong>{{ item.product.brand }}</div>
+          </div>
+          <div class="col-md-3">
+            <div><strong>Rs : </strong> {{ item.product.salesPrice }}</div>
+            <!-- <div>
+              <strong>Sub-total:</strong>{{ item.product.salesPrice * item.productQuantity | currency: "RS" }}
+            </div> -->
+          </div>
+          <div class="col-md-3 text-center">
+            <button class="btn" type="button" (click)="minus(item.product._id, item.productQuantity)">
+              <i class="fa fa-minus"></i>
+            </button>
+            {{ item.productQuantity }}
+            <button type="button" class="btn" (click)="plus(item.product._id, item.productQuantity)">
+              <i class="fa fa-plus"></i>
+            </button>
+            <div  (click)="deleteItem(item.product)">
+              <i class="fas fa-trash text-danger"></i>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+        
+      </div>
+    </div>
+
+    <div class="col-md-4" style="background-color: #ffffff; height: 250px; padding: 16px 12px">
+      <p class="summary-section-heading">Order Summary</p>
+      <div class="row">
+        <div class="col-md-8 col-8 checkout-summary-label">
+          <!-- <p >Subtotal ({{cart.length}} items)</p> -->
+        </div>
+        <div class="col-md-4 col-4 sub-total-price">
+          <p>Rs. {{ total | number: "1.0-0" }}</p>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 10px">
+        <div class="input-group">
+          <input type="text" class="form-control ml-3" placeholder="Enter Voucher Code" aria-label="Search in OneMall"
+            aria-describedby="button-addon2" />
+          <div class="input-group-append">
+            <button class="btn btn-primary mr-3" type="button" id="button-addon2">
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-8">
+          <p>Total</p>
+        </div>
+        <div class="col-md-4 col-4 total-price text-primary">
+          <p>Rs. {{ total | number }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <button type="button" class="btn btn-block btn-primary" [routerLink]="'/checkout'" >
+            PROCEED TO CHECKOUT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

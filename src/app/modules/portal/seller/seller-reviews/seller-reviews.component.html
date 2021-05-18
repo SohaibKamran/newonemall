@@ -1,0 +1,88 @@
+<app-loading *ngIf="isLoading === 1"></app-loading>
+<app-error *ngIf="isLoading === -1"></app-error>
+<div class="container-fluid" *ngIf="isLoading === 0">
+
+   <!--    <div class="d-sm-flex align-items-center justify-content-between mb-4">-->
+  <!--        <h1 class mb-0 text-gray-800">Reviews</h1>-->
+  <!--    </div>-->
+
+
+  <!--    <div class="row mb-4">-->
+  <!--        <div class="col-md-6 col-lg-8">-->
+
+  <h1 class="pl-2">Manage Reviews</h1>
+   <div class="d-grid gap-2 d-md-block ml-4 mt-3 mb-3">
+     <button type="button" class="btn btn-sm ">Product Review</button>
+     <button type="button" class="btn btn-sm">Seller Review</button>
+   </div>
+
+  <div class="card shadow">
+    <div class="card-header d-flex" [ngClass]="{'border-0' : reviews.length> 0}">
+      <select id="rating" class="input-width mr-2">
+        <option value="">Choose rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+       <select class="input-width mr-2">
+        <option value="rating">Rating Only</option>
+        <option value="comments">With Comments</option>
+        <option value="images">With Images</option>
+      </select>
+      <select id="status" class="input-width mr-2">
+        <option value="repied">Replied</option>
+        <option value="notReplied">Not Replied</option>
+        <option value="cancelled">Cancelled Items</option>
+      </select>
+      <input class="input-width mr-2" type="date" id="Date" placeholder="Date">
+      <input class="input-width mr-2" type="text" id="productName" placeholder="Product Name">
+      <input class="input-width mr-2" type="number" id="orderNumber" placeholder="Order Number">
+      <button type="button" class="btn btn-sm btn-secondary ml-4">Seach</button>
+    </div>
+  </div>
+
+   <!-- Table -->
+  <div class="row mt-2">
+    <div class="col">
+      <div class="card shadow">
+        <div class="table-responsive">
+          <p *ngIf="reviews.length == 0" class="text-center p-3 pt-4">No order found</p>
+          <table *ngIf="reviews.length> 0" class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th class="tableHeader" scope="col"><h4>Order Number</h4></th>
+              <th class="tableHeader" scope="col"><h4>Item</h4></th>
+              <th class="tableHeader" scope="col"><h4>Product Overview</h4></th>
+              <th class="tableHeader" scope="col"><h4>Reply</h4></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let order of reviews;">
+              <td>
+                {{order.orderNumber}}
+              </td>
+              <td>
+                {{order.item}}
+              </td>
+              <td>
+                {{order.productReview}}
+              </td>
+              <td>
+                {{order.reply}}
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--        </div>-->
+  <!--        <div class="col-md-6 col-lg-4">d</div>-->
+  <!--    </div>-->
+
+
+</div>

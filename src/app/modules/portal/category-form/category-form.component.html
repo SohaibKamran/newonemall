@@ -1,0 +1,26 @@
+<section>
+  <div class="container">
+    <div>
+      <div>
+        <div class="mt-5"></div>
+        <div *ngIf="message !== null" class="alert alert-{{message.type}} mb-3">
+          {{message.text}}
+        </div>
+        <form [formGroup]="inputForm" #formDirective="ngForm" (ngSubmit)="submitForm(inputForm.value);" >
+          <div class="form-group row px-3">
+            <label for="inputName">Category Name</label>
+            <input type="text" formControlName="name" class="form-control" id="inputName" placeholder="">
+          </div>
+          <div class="form-group row px-3">
+            <label for="thumbnailSelect">Thumbnail</label>
+            <input type="file" formControlName="thumbnail" class="form-control py-1 pl-1" id="thumbnailSelect" (change)="selectImage($event)" accept="image/*">
+          </div>
+
+          <button type="submit" [disabled]="!inputForm.valid && !this.editMode" class="btn btn-primary btn-block my-5">{{editMode? 'Update': 'Add'}}</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>

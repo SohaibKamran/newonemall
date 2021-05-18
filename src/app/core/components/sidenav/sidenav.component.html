@@ -1,0 +1,84 @@
+<!-- Sidebar -->
+<div class="sidenav-text-color sidenav-position sidenav-bg-color">
+  <ul class="sidenav-text-color navbar-nav sidebar sidebar-dark accordion" [ngClass]="{'toggled' : navbarToggled}"
+    id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="newComers sidebar-brand d-flex align-items-center justify-content-center" routerLink="manage">
+      <div class="sidebar-brand-icon">
+        <img src="./assets/images/logo.png" alt="" height="30">
+      </div>
+      <!--    <div class="sidebar-brand-text mx-3">Que<strong>Link</strong></div>-->
+    </a>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <!--  <li class="nav-item">-->
+    <!--    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"-->
+    <!--       aria-expanded="true" aria-controls="collapseUtilities">-->
+    <!--      <i class="fas fa-fw fa-wrench"></i>-->
+    <!--      <span>Utilities</span>-->
+    <!--    </a>-->
+    <!--    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"-->
+    <!--         data-parent="#accordionSidebar">-->
+    <!--      <div class="bg-white py-2 collapse-inner rounded">-->
+    <!--        <h6 class="collapse-header">Custom Utilities:</h6>-->
+    <!--        <a class="collapse-item" href="utilities-color.html">Colors</a>-->
+    <!--        <a class="collapse-item" href="utilities-border.html">Borders</a>-->
+    <!--        <a class="collapse-item" href="utilities-animation.html">Animations</a>-->
+    <!--        <a class="collapse-item" href="utilities-other.html">Other</a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </li>-->
+
+    <ng-container *ngFor="let nav of navbar; let i = index;">
+
+      <!-- Divider -->
+      <hr *ngIf="nav.divider" class="sidebar-divider" [ngClass]="{'my-0' : !nav.title}">
+
+      <!-- Heading -->
+      <!-- <div *ngIf="nav.title" class="sidebar-heading">
+        {{nav.title}}
+      </div> -->
+
+      <!-- Navbar Items -->
+      <ng-container *ngFor="let item of nav.items; let j = index;">
+        <li class="sidenav-text-color nav-item" routerLinkActive="active">
+          <ng-container *ngIf="item.children?.items && item.children?.items.length > 0; then subMenu else linkMenu">
+          </ng-container>
+
+          <!-- Simple Navbar Item -->
+          <ng-template #linkMenu>
+            <a class="nav-link-item nav-link" routerLink="{{item.path}}">
+              <i class="{{item.icon}}" style="color:black"></i>
+              <span class="sidenav-text-color">{{item.title}}</span>
+            </a>
+          </ng-template>
+
+          <!-- Navbar Item With Submenu-->
+          <ng-template #subMenu>
+            <a class="nav-link" style="cursor: pointer;" data-toggle="collapse"  attr.data-target="#collapse{{i}}-{{j}}"
+              aria-expanded="true" attr.aria-controls="collapse{{i}}-{{j}}" >
+              <i class="fa-fw {{item.icon}}" style="color:black"></i>
+              <span class="sidenav-text-color">{{item.title}}</span>
+            </a>
+            <div id="collapse{{i}}-{{j}}" class="collapse" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 *ngIf="item.children?.title" class="collapse-header">{{item.children?.title}}</h6>
+                <ng-container *ngFor="let menu of item.children?.items;">
+                  <a class="collapse-item" routerLink="{{menu.path}}" routerLinkActive="active">{{menu.title}}</a>
+                </ng-container>
+              </div>
+            </div>
+          </ng-template>
+
+        </li>
+
+      </ng-container>
+    </ng-container>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+  </ul>
+</div>
+
+<!-- End of Sidebar -->

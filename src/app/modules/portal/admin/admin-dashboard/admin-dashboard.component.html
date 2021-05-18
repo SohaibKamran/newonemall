@@ -1,0 +1,420 @@
+<div class="container-fluid">
+
+
+  <!-- Page Heading -->
+  <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+  </div> -->
+
+  <!-- <div class="row mb-4">
+    <div class="col-md-6 col-lg-8">
+    </div>
+    <div class="col-md-6 col-lg-4">
+    </div>
+  </div> -->
+
+  <!-- Content Row -->
+  <div class="row">
+
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Active products</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{products.length}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-th-list fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card  shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Orders in Que</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{orders.length}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Earnings</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">RS {{earning}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">New Messages</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{messages}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-comments fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- card content -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card shadow mb-4 sec-row-col">
+        <div class="card-header  py-3">
+          <h5 class="m-0 font-weight-bold">Products</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <h6 class="mb-2"><strong>Orders</strong></h6>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Shipped On Time</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Cancellation Rate</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Return Rate</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <h6><strong>Ratings</strong></h6>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Positive Seller Rating</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Product Rating</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Response Rate</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Response Time(min)</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPerations -->
+    <div class="col-lg-6">
+      <!-- OPerations Card-->
+      <div class="card sec-row-col shadow mb-4">
+        <!-- OPerations Card Header-->
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold">Operations</h5>
+        </div>
+        <!-- OPerations Card Body-->
+        <div class="card-body">
+          <h6><strong>New Products</strong></h6>
+          <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <a class="dashboard-info-card-title">Rejected Products (total)</a>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Approved Products</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Rejecting Products(Miss Product Image)</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Pending Products</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <h6><strong>Pending Orders</strong></h6>
+          <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <a class="dashboard-info-card-title">Since > 24h</a>
+                </div>
+                <div class="col-md-2">
+                  <p>0</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Since < 24h</p> </div> <div class="col-md-2">
+                      <p>-</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Since 12 - 24h</p>
+                </div>
+                <div class="col-md-2">
+                  <p>0</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <h6><strong>Pending Return Orders</strong></h6>
+          <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <a class="dashboard-info-card-title">Return Requests Pending</a>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Return QQC Pending</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-10 mb-3 mb-md-0">
+                  <p class="dashboard-info-card-title">Upload Evidence Pending</p>
+                </div>
+                <div class="col-md-2">
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <!-- Seller Picks Card 4 coloumn -->
+    <div class="col-lg-4">
+      <div class="card shadow mb-4">
+        <!-- seller pick card header -->
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-dark">Seller Picks</h6>
+        </div>
+        <!-- Seller Pick Card Body -->
+        <div class="card-body">
+          <!-- 1st row of Seller Picks Card -->
+          <div class="row">
+            <!-- Quota Usage Card -->
+            <div class="col-sm-6 mb-4">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Quota Usage</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">0/0</p>
+                </div>
+              </div>
+            </div>
+            <!--Page Veiw Card -->
+            <div class="col-sm-6 mb-4">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Page View</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 2nd row of Seller Picks Card -->
+          <div class="row">
+            <!-- Click Page View-->
+            <div class="col-sm-6 mb-4">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Click Page View</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">0/0</p>
+                </div>
+              </div>
+            </div>
+            <!-- Total Sales -->
+            <div class="col-sm-6 mb-4">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Total Sales</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">PKR 0.0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h6 class="m-0 font-weight-bold text-dark">Challenges</h6>
+          <hr>
+          <p>You dont have any challenges</p>
+          <h6 class="m-0 font-weight-bold text-dark">Advices</h6>
+          <hr>
+          <p>You dont have any Advices</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Card 4 coloumns -->
+    <div class="col-lg-4">
+      <div class="card shadow mb-4">
+        <!--Chat Card Header -->
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-dark">Chat</h6>
+        </div>
+
+        <!--Chart Card Body -->
+        <div class="card-body">
+
+          <!-- 1st Row -->
+          <div class="row">
+            <!-- Card1 -->
+            <div class="col-sm-6">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Response Rate</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">0.0%</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-sm-6 mb-4">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Response Time</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">0.0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2nd Row -->
+          <div class="row">
+            <!-- Card 3 -->
+            <div class="col-sm-6">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Conversation Rate</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">0.0%</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4------------------ -->
+            <div class="col-sm-6 mb-4">
+              <div class="card dashboard-info-card">
+                <div class="card-body text-center">
+                  <p class="card-title dashboard-info-card-title">Conversation</p>
+                  <p class="card-subtitle font-weight-bold text-gray-800">0</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <h6 class="m-0 font-weight-bold text-dark">Challenges</h6>
+          <hr>
+          <p>You dont have any challenges</p>
+          <h6 class="m-0 font-weight-bold text-dark">Advices</h6>
+          <hr>
+          <p>You dont have any Advices</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,75 @@
+
+<div class="container">
+  <div class="row mt-5">
+
+    <div class="col-sm-6">
+      <h1 class="pt-5" >Welcome to</h1><img src="assets/images/logo.png" class=""  width="200" alt="...">
+      <h3 >Seller Account</h3>
+      <p class="font-weight-bold">Please register yourself as a seller to get and<br> earn more</p>
+      <p class="font-weight-bold pb-5">*Terms and conditions apply</p>
+
+      <div class="row align-baseline align-bottom mt-5 pt-5">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <p>Join US</p>
+          <a href="#" class="fab fa-facebook-f"></a>
+          <a href="#" class="fab fa-youtube"></a>
+          <a href="#" class="fab fa-instagram"></a>
+          <a href="#" class="fab fa-linkedin-in"></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6 shadow bg-white rounded pl-4 pr-4 pb-3">
+      <form [formGroup]="inputForm" #formDirective="ngForm" (ngSubmit)="submitForm(inputForm.value);" class="user text-center">
+        <h1 class="py-5" style="margin-top: 30px;">Signup</h1>
+        <div class="form-group">
+          <input class="form-control" formControlName="name" type="text" placeholder="FullName">
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="cnic" type="text" placeholder="CNIC">
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="email" type="text" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="phone" type="text" placeholder="Phone">
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="password" type="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="confirmPassword" type="password" placeholder="Confirm Password">
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="businessName" type="text" placeholder="Business Name">
+        </div>
+
+        <!--                <div class="form-check">-->
+        <!--                    <input class="form-check-input position-static" type="checkbox">-->
+        <!--                    <label class="font-weight-bold ml-2"> I agree to the <span class="text-primary">terms & conditions</span> by OneMall</label>-->
+        <!--                </div>-->
+
+        <div class="d-md-flex my-2 justify-content-between px-1">
+          <div class="form-group">
+            <div class="custom-control custom-checkbox small">
+              <input type="checkbox" class="custom-control-input" id="customCheck" (change)="checkValue($event)">
+              <label class="custom-control-label" for="customCheck">I agree <a [routerLink]="'/terms-and-conditions'">terms and conditions</a> </label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="(!inputForm.valid) || !isChecked" class="btn btn-primary px-4 mt-2 mb-3" style="width: 300px">
+          Signup
+        </button>
+        <p class="small m-0 text-danger text-center">{{message}}</p>
+        <p class="small m-0 text-success text-center">{{sucess}}</p>
+        <hr>
+        <button class="btn btn-outline-primary m-3" (click)="signin()" style="width: 300px">
+          Already have an account
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>

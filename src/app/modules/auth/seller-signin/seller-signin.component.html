@@ -1,0 +1,70 @@
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-6">
+      <h1 class="pt-5" >Welcome to</h1><img src="assets/images/logo.png" class=""  width="200" alt="...">
+      <h3 >Seller Account</h3>
+      <p class="font-weight-bold">Please Login as a seller to Manage your account.<br>&nbsp;</p>
+      <p class="font-weight-bold pb-5">&nbsp;</p>
+
+      <div class="row align-baseline align-bottom mt-5 pt-5">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <p>Join US</p>
+          <a href="#" class="fab fa-facebook-f"></a>
+          <a href="#" class="fab fa-youtube"></a>
+          <a href="#" class="fab fa-instagram"></a>
+          <a href="#" class="fab fa-linkedin-in"></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6 shadow bg-white rounded pl-4 pr-4 pb-3">
+      <form [formGroup]="inputForm" #formDirective="ngForm" (ngSubmit)="submitForm();" class="user text-center">
+
+        <h1 class="py-5" style="margin-top: 30px;">Login</h1>
+
+        <div class="form-group">
+          <input type="email" name="email" formControlName="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" (change)="resetMessage()" placeholder="Email Address">
+          <div *ngIf="email.invalid && email.touched ">
+            <div *ngIf="email.errors.required">
+              <p class="small m-0 mt-1 text-danger text-left">Email is required</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" formControlName="password" class="form-control" id="exampleInputPassword" (change)="resetMessage()" placeholder="Password">
+          <div *ngIf="password.invalid && password.touched " class="align-content-start">
+            <div *ngIf="password.errors.required">
+              <p class="small m-0 mt-1 text-danger text-left">Password is required</p>
+            </div>
+            <div *ngIf="password.errors.minlength">
+              <p class="small m-0 mt-1 text-danger text-left">Password should be minimum {{password.errors.minlength.requiredLength}} characters</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-md-flex justify-content-between px-1">
+          <div class="form-group">
+            <div class="custom-control custom-checkbox small">
+              <input type="checkbox" class="custom-control-input" id="customCheck" checked>
+              <label class="custom-control-label" for="customCheck">Remember Me</label>
+            </div>
+          </div>
+          <div hidden>
+            <a href="#" class="link">Forgot Password?</a>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary px-4 mt-2 mb-3" style="width: 200px">
+          Login
+        </button>
+        <p class="small m-0 text-danger text-center">{{titleCaseWord(message)}}</p>
+        <hr>
+        <button class="btn btn-outline-primary m-3" (click)="signup()" style="width: 200px">
+          Create New Account
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
